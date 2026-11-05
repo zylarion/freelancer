@@ -2,7 +2,7 @@
 
 ¡Aplicación web funcional desplegada en GitHub Pages!
 
-🚀 **Acceso directo**: [https://jflorezwearkzo.github.io/freelancer/](https://jflorezwearkzo.github.io/freelancer/)
+🚀 **Acceso directo**: [https://zylarion.github.io/freelancer/](https://zylarion.github.io/freelancer/)
 
 ## Funcionalidades Implementadas:
 - ✅ Sistema de autenticación completo
