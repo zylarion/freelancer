@@ -237,7 +237,7 @@ export default function ProjectsPage() {
               </div>
               <select
                 value={filterStatus}
-                onChange={(e) => setFilterStatus(e.target.value as any)}
+                onChange={(e) => setFilterStatus(e.target.value as typeof filterStatus)}
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
               >
                 <option value="all">Todos los estados</option>
@@ -440,7 +440,7 @@ export default function ProjectsPage() {
                         </label>
                         <select
                           value={formData.status}
-                          onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
+                          onChange={(e) => setFormData({ ...formData, status: e.target.value as typeof formData.status })}
                           className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                         >
                           <option value="active">Activo</option>

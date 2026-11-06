@@ -1,13 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { getCurrentUser } from '@/lib/auth';
 import { getTasksByUserId, createTask, updateTask, getProjectsByUserId } from '@/lib/storage';
 import { User, Task, Project } from '@/lib/types';
 import AppLayout from '@/components/layout/AppLayout';
 
-export default function TasksPage() {
+function TasksContent() {
   const [user, setUser] = useState<User | null>(null);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [projects, setProjects] = useState<Project[]>([]);
@@ -278,7 +278,7 @@ export default function TasksPage() {
               key={column.id}
               className={`${column.color} rounded-2xl p-6 min-h-[600px] border-2 border-dashed ${column.borderColor}`}
               onDragOver={handleDragOver}
-              onDrop={(e) => handleDrop(e, column.id as any)}
+              onDrop={(e) => handleDrop(e, column.id as Parameters<typeof handleDrop>[1])}
             >
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
@@ -430,7 +430,7 @@ export default function TasksPage() {
                           </label>
                           <select
                             value={formData.priority}
-                            onChange={(e) => setFormData({ ...formData, priority: e.target.value as any })}
+                            onChange={(e) => setFormData({ ...formData, priority: e.target.value as typeof formData.priority })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                           >
                             <option value="low">Baja 🟢</option>
@@ -447,7 +447,7 @@ export default function TasksPage() {
                           </label>
                           <select
                             value={formData.status}
-                            onChange={(e) => setFormData({ ...formData, status: e.target.value as any })}
+                            onChange={(e) => setFormData({ ...formData, status: e.target.value as typeof formData.status })}
                             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-500 focus:border-transparent"
                           >
                             <option value="pending">Por Hacer</option>
@@ -493,5 +493,14 @@ export default function TasksPage() {
         )}
       </div>
     </AppLayout>
+  );
+}
+// useSearchParams en una exportación estática necesita un límite de Suspense
+// (https://nextjs.org/docs/messages/missing-suspense-with-csr-bailout).
+export default function TasksPage() {
+  return (
+    <Suspense fallback={null}>
+      <TasksContent />
+    </Suspense>
   );
 }

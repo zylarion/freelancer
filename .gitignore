@@ -39,3 +39,7 @@ next-env.d.ts
 # prisma
 /prisma/dev.db
 /prisma/dev.db-journal
+# variables de entorno (copia .env.example a .env.local)
+.env
+.env*.local
+!.env.example

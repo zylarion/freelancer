@@ -15,3 +15,17 @@
 - ✅ Datos de demostración incluidos
 
 **¡Haz clic en 'Cargar Datos de Demostración' para probar todas las funcionalidades!**
+
+## Desarrollo
+
+Requiere Node 22 (`.nvmrc`).
+
+```bash
+npm ci
+cp .env.example .env.local   # solo si vas a usar Prisma en local
+npm run dev                  # http://localhost:3000
+npm run ci                   # lint + build estático (lo mismo que corre el CI)
+npm run typecheck            # tipos (hay deuda previa; no agregues errores nuevos)
+```
+
+Cómo se trabaja (ramas, PRs, commits): [CONTRIBUTING.md](CONTRIBUTING.md). Seguridad: [SECURITY.md](SECURITY.md).
